@@ -7,14 +7,17 @@
 //
 
 #import "ILAppDelegate.h"
+#import "MainViewController.h"
 
 @implementation ILAppDelegate
 
 @synthesize window = _window;
+@synthesize viewController;
 
 - (void)dealloc
 {
     [_window release];
+    [viewController release];
     [super dealloc];
 }
 
@@ -22,6 +25,10 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
+    
+    self.viewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
+    [self.window setRootViewController:self.viewController];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
